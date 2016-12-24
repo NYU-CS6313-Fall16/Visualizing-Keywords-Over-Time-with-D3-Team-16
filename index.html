@@ -82,17 +82,31 @@
       }
 
       /* color ranges */
-      .RdYlGn .q10-11{fill:rgb(165,0,38)}
-      .RdYlGn .q9-11{fill:rgb(200,10,45)}
-      .RdYlGn .q8-11{fill:rgb(220,60,45)}
-      .RdYlGn .q7-11{fill:rgb(244,109,67)}
-      .RdYlGn .q6-11{fill:rgb(250,155,87)}
-      .RdYlGn .q5-11{fill:rgb(253,184,100)}
-      .RdYlGn .q4-11{fill:rgb(254,210,139)}
-      .RdYlGn .q3-11{fill:rgb(255,255,155)}
-      .RdYlGn .q2-11{fill:rgb(255,255,180)}
-      .RdYlGn .q1-11{fill:rgb(255,255,210)}
-      .RdYlGn .q0-11{fill:rgb(255,255,240)}
+      .RdYlGn_1 .q10-11{fill:rgb(165,0,38)}
+      .RdYlGn_1 .q9-11{fill:rgb(200,10,45)}
+      .RdYlGn_1 .q8-11{fill:rgb(220,60,45)}
+      .RdYlGn_1 .q7-11{fill:rgb(244,109,67)}
+      .RdYlGn_1 .q6-11{fill:rgb(250,155,87)}
+      .RdYlGn_1 .q5-11{fill:rgb(253,184,100)}
+      .RdYlGn_1 .q4-11{fill:rgb(254,210,139)}
+      .RdYlGn_1 .q3-11{fill:rgb(255,255,155)}
+      .RdYlGn_1 .q2-11{fill:rgb(255,255,180)}
+      .RdYlGn_1 .q1-11{fill:rgb(255,255,210)}
+      .RdYlGn_1 .q0-11{fill:rgb(255,255,240)}
+
+
+      /* color ranges */
+      .RdYlGn_2 .q60-60{fill:rgb(165,0,38)}
+      .RdYlGn_2 .q54-60{fill:rgb(200,10,45)}
+      .RdYlGn_2 .q48-60{fill:rgb(220,60,45)}
+      .RdYlGn_2 .q42-60{fill:rgb(244,109,67)}
+      .RdYlGn_2 .q36-60{fill:rgb(250,155,87)}
+      .RdYlGn_2 .q30-60{fill:rgb(253,184,100)}
+      .RdYlGn_2 .q24-60{fill:rgb(254,210,139)}
+      .RdYlGn_2 .q18-60{fill:rgb(255,255,155)}
+      .RdYlGn_2 .q12-60{fill:rgb(255,255,180)}
+      .RdYlGn_2 .q6-60{fill:rgb(255,255,210)}
+      .RdYlGn_2 .q0-60{fill:rgb(255,255,240)}
       
       
   #xaxis .domain {
@@ -340,7 +354,7 @@ input:checked + .slider:before {
 
     var color = d3.scale.quantize()
         .domain([1, 25])
-        .range(d3.range(30).map(function(d) { return "q" + d + "-11"; }));
+        .range(d3.range(60).map(function(d) { return "q" + d + "-11"; }));
 
     var svg = d3.select("#HeatMap").selectAll("svg")
         .data(d3.range(2014, 2015))
@@ -348,7 +362,7 @@ input:checked + .slider:before {
         .attr("id", "HeatMapSVG")
         .attr("width", width)
         .attr("height", height)
-        .attr("class", "RdYlGn")
+        .attr("class", "RdYlGn_2")
       .append("g")
 
     var rect = svg.selectAll(".day")
@@ -529,7 +543,7 @@ input:checked + .slider:before {
 
 
   <script>
-    var year = 2014;
+    var year = 2015;
     var month = 0;
     var topNum = 15;
     var listByMonth = true;
@@ -2510,23 +2524,29 @@ var ranking = serchForOrder(data12[i].keyword,keywordsAll);
   }
   
   
-    function filteredDataByMonth(data, theYear, theMonth){
+    function filteredDataByMonth(data, theMonth){
 
+        var thisMonth = theMonth;
 
+           console.log (data[0].keyword);
+       console.log (data[0].year[year][thisMonth]);
+        console.log (thisMonth);
          
 
-    var filteredDataByMonth = data.filter(function(d) {
+    var filteredDataByMonth = data.filter(function(d,i) {
 
 
-       
-          //  console.log (d.year[theYear][theMonth]);
-       // console.log (theMonth);
+                console.log (d);
 
+             console.log (d.year[year][0]);
 
-        return    d.year[theYear][theMonth];
+          
+        return    d.year[year][thisMonth];
 
       });
-      filteredDataByMonth.sort(function(a,b) { return d3.descending(a.year[theYear][theMonth], b.year[theYear][theMonth] )  });
+
+
+      filteredDataByMonth.sort(function(a,b) { return d3.descending(a.year[year][thisMonth], b.year[year][thisMonth] )  });
     return filteredDataByMonth.slice(0, topNum);
   }
  
@@ -2546,34 +2566,19 @@ var ranking = serchForOrder(data12[i].keyword,keywordsAll);
           var filteredData11;
           var filteredData12;
           var filteredData13;
-/*
-          if (listByMonth){
-*/
-              var month1 = month;
-              var month2 = month+1;
-              var month3 = month2+1;
-              var month4 = month3 + 1;
-              var month5 = month4 + 1;
-              var month6 = month5+1;
-              var month7 = month6+1;
-              var month8 = month7+1;
-              var month9 = month8 + 1;
-              var month10 = month9 + 1;
-              var month11 = month10 + 1;
-              var month12 = month11 + 1;
 
-               filteredData1 = filteredDataByMonth(data,year,month1);
-               filteredData2 = filteredDataByMonth(data,year,month2);
-               filteredData3 = filteredDataByMonth(data,year,month3);
-               filteredData4 = filteredDataByMonth(data,year,month4);
-               filteredData5 = filteredDataByMonth(data,year,month5);
-               filteredData6 = filteredDataByMonth(data,year,month6);
-               filteredData7 = filteredDataByMonth(data,year,month7);
-               filteredData8 = filteredDataByMonth(data,year,month8);
-               filteredData9 = filteredDataByMonth(data,year,month9);
-               filteredData10 = filteredDataByMonth(data,year,month10);
-               filteredData11 = filteredDataByMonth(data,year,month11);
-               filteredData12 = filteredDataByMonth(data,year,month12);
+               filteredData1 = filteredDataByMonth(data,0);
+               filteredData2 = filteredDataByMonth(data,1);
+               filteredData3 = filteredDataByMonth(data,2);
+               filteredData4 = filteredDataByMonth(data,3);
+               filteredData5 = filteredDataByMonth(data,4);
+               filteredData6 = filteredDataByMonth(data,5);
+               filteredData7 = filteredDataByMonth(data,6);
+               filteredData8 = filteredDataByMonth(data,7);
+               filteredData9 = filteredDataByMonth(data,8);
+               filteredData10 = filteredDataByMonth(data,9);
+               filteredData11 = filteredDataByMonth(data,10);
+               filteredData12 = filteredDataByMonth(data,11);
                filteredData13 = filteredDataByYear(data, year);
     
          /* 
