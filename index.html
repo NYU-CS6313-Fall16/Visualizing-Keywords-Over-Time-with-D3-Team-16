@@ -357,7 +357,7 @@ input:checked + .slider:before {
         .range(d3.range(60).map(function(d) { return "q" + d + "-11"; }));
 
     var svg = d3.select("#HeatMap").selectAll("svg")
-        .data(d3.range(year, yearNext))
+        .data(d3.range(year, yearNext)
       .enter().append("svg")
         .attr("id", "HeatMapSVG")
         .attr("width", width)
