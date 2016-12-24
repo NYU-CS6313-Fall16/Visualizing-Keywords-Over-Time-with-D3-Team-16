@@ -22,7 +22,20 @@
         margin-top: 0px;
       }
          
+      line{
 
+              stroke-width :2;
+              visibility:hidden;
+
+               
+
+      }
+      .keyword-Text{
+
+
+          fill : black;
+
+      }
 
       .xlabel{
 
@@ -412,16 +425,23 @@ input:checked + .slider:before {
       d3.csv(csvDocName, function(error, csv) {
 
 
+         
+
+
        data = csv.filter(function(row) {
-        return row['keyword'] == keyword;
+
+
+        return row['keyword'] == keyword || row['year'] == year;
         })
 
 
           csv = csv.filter(function(row) {
-        return row['keyword'] == keyword;
+        return row['keyword'] == keyword || row['year'] == year;
         })
 
 
+      console.log (data);
+       console.log (csv);
 
         var newData = [];
 
@@ -2693,7 +2713,7 @@ var ranking = serchForOrder(data12[i].keyword,keywordsAll);
               d3.select("#DropDownOption1").on("click",function(d,i){
 
 
-                  csvDocName = "daily.csv";
+                  csvDocName = "csvReviews.csv";
 
 
 
@@ -2721,14 +2741,14 @@ var ranking = serchForOrder(data12[i].keyword,keywordsAll);
                       d3.select("#dataSetName").text("Yelp Tips");
 
 
-                     csvDocName = "daily.csv";
+                     csvDocName = "csvTips.csv";
 
 
 
                      d3.selectAll("#svg").remove();
 
 
-                  JsonDocName = "KeyWordsFrequency_Data.json";
+                  JsonDocName = "tipsKey.json";
 
                    d3.json(JsonDocName, function(error,result){
 
