@@ -330,6 +330,8 @@ input:checked + .slider:before {
 
    <script>
 
+    var csvYear = 2014;
+    var csvYearnext = 2015;
     var csvDocName = "csvReviews.csv";
     var width = 1700,
         height = 150,
@@ -357,7 +359,7 @@ input:checked + .slider:before {
         .range(d3.range(60).map(function(d) { return "q" + d + "-11"; }));
 
     var svg = d3.select("#HeatMap").selectAll("svg")
-        .data(d3.range(year, yearNext)
+        .data(d3.range(csvYear, csvYearnext))
       .enter().append("svg")
         .attr("id", "HeatMapSVG")
         .attr("width", width)
@@ -2688,10 +2690,16 @@ var ranking = serchForOrder(data12[i].keyword,keywordsAll);
              d3.select("#DropDownOption2014").on("click",function(d,i){
 
                   year = 2014;
-                  yearNext = 2015;
+
+                  csvYear = 2014;
+                  csvyearNext = 2015;
+
+
+                     d3.selectAll("#HeatMapSVG").remove();
+
+                  renderHeatMap();
 
                   d3.selectAll("#svg").remove();
-
                   render(data);
 
               });   
@@ -2700,7 +2708,15 @@ var ranking = serchForOrder(data12[i].keyword,keywordsAll);
 
 
                   year = 2015;
-                  yearNext = 2016;
+                  
+
+                  csvYear = 2015;
+                  csvyearNext = 2016;
+
+
+                  d3.selectAll("#HeatMapSVG").remove();
+
+                  renderHeatMap();
 
                   d3.selectAll("#svg").remove();
 
