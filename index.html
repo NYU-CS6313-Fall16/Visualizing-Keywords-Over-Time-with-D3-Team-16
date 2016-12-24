@@ -543,7 +543,7 @@ input:checked + .slider:before {
 
 
   <script>
-    var year = 2015;
+    var year = 2014;
     var month = 0;
     var topNum = 15;
     var listByMonth = true;
@@ -914,6 +914,13 @@ var month7=month+6;
     devidedByTenth = devidedByTenth * 1000;
     
   }
+
+  else if (frequencies13[0] > 1000){
+
+    devidedByTenth = devidedByTenth * 2.1;
+    
+  }
+
  
 
   xscaleMaxRange = frequencies13[0] * ( 0.285  / devidedByTenth);
